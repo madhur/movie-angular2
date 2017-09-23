@@ -1,5 +1,7 @@
+import { MovieActions } from '../../actions/movie.actions';
 import { MovieService } from '../../service/movie.service';
 import { Component, OnInit } from '@angular/core';
+import {NgRedux} from  '@angular-redux/store';
 
 @Component({
   selector: 'app-movie-container',
@@ -8,11 +10,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MovieContainerComponent implements OnInit {
 
-  constructor(private movieService: MovieService) { }
+  constructor(private movieActions: MovieActions, private redux: NgRedux<any>) { }
 
   ngOnInit() {
 
-    this.movieService.getMoviesList();
+    this.redux.dispatch(<any>this.movieActions.getMovie());
 
   }
 

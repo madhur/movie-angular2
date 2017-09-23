@@ -1,5 +1,4 @@
 import { applyMiddleware, Store, combineReducers, compose, createStore } from "redux";
-import { environment } from "../../../environments/environment";
 import thunk from "redux-thunk";
 import rootReducer from "./combine-reducers.service";
 
