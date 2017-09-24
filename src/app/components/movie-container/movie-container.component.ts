@@ -22,7 +22,7 @@ export class MovieContainerComponent implements OnInit {
     this.redux.dispatch(<any>this.movieActions.getMovies());
 
     this.moviesList$.subscribe(data => {
-      if(data != null) {
+      if (data != null) {
         this.numMovies = data.size;
       }
 

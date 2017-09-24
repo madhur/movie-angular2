@@ -1,7 +1,7 @@
 
-import {Component, OnInit, Input, Output, EventEmitter, HostListener, forwardRef, NgModule} from "@angular/core";
-import {ControlValueAccessor, NG_VALUE_ACCESSOR, NG_VALIDATORS, Validator, AbstractControl} from "@angular/forms";
-import {CommonModule} from "@angular/common";
+import { Component, OnInit, Input, Output, EventEmitter, HostListener, forwardRef, NgModule } from "@angular/core";
+import { ControlValueAccessor, NG_VALUE_ACCESSOR, NG_VALIDATORS, Validator, AbstractControl } from "@angular/forms";
+import { CommonModule } from "@angular/common";
 
 @Component({
     selector: "app-rating",
@@ -45,7 +45,7 @@ span.rating i{
 }
 .star-icon {
     color: #ddd;
-    font-size: 2em;
+    font-size: 1em;
     position: relative;
 }
 .star-icon:before {
@@ -126,6 +126,9 @@ export class RatingItemComponent implements OnInit, ControlValueAccessor, Valida
     float: boolean;
 
     @Input()
+    rating;
+
+    @Input()
     titles: string[] = [];
 
     // -------------------------------------------------------------------------
@@ -178,8 +181,10 @@ export class RatingItemComponent implements OnInit, ControlValueAccessor, Valida
          this.model = Math.round(value);
          return;
          }*/
-
-        this.model = value;
+        if (value != null) {
+            this.model = value;
+            this.buildRanges();
+        }
     }
 
     registerOnChange(fn: any): void {
@@ -237,7 +242,8 @@ export class RatingItemComponent implements OnInit, ControlValueAccessor, Valida
 
             return this.hovered >= item ? 100 : 0;
         }
-        return this.model >= item ? 100 : 100 - Math.round((item - this.model) * 10) * 10;
+        let val = this.rating >= item ? 100 : 100 - Math.round((item - this.rating) * 10) * 10;
+        return val;
     }
 
     setHovered(hovered: number): void {
@@ -263,9 +269,9 @@ export class RatingItemComponent implements OnInit, ControlValueAccessor, Valida
 
 
     rate(value: number) {
-        if (!this.readonly && !this.disabled && value >= 0 && value <= this.ratingRange.length) {
+        if (!this.disabled && value >= 0 && value <= this.ratingRange.length) {
             const newValue = this.hoveredPercent ? (value - 1) + this.hoveredPercent / 100 : value;
-            this.onChange(newValue);
+           // this.onChange(newValue);
             this.model = newValue;
         }
     }
@@ -276,6 +282,10 @@ export class RatingItemComponent implements OnInit, ControlValueAccessor, Valida
 
     private buildRanges() {
         this.ratingRange = this.range(1, this.max);
+        if (this.rating != null) {
+            this.rate(this.rating);
+        }
+        
     }
 
     private range(start: number, end: number) {

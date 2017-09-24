@@ -1,3 +1,4 @@
+import { RatingItemComponent } from './components/rating-item/rating-item.component';
 import { MovieDetailComponent } from './components/movie-detail/movie-detail.component';
 import { MovieActions } from './actions/movie.actions';
 import { MovieService } from './service/movie.service';
@@ -10,11 +11,10 @@ import { AppComponent } from './app.component';
 import { MovieItemComponent } from './components/movie-item/movie-item.component';
 import { MovieContainerComponent } from './components/movie-container/movie-container.component';
 import { store } from './core/build-redux-store.service';
-import { RatingItemComponent } from './components/rating-item/rating-item.component';
-import {Routes, RouterModule} from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 
 const appRoutes: Routes = [
-  { path: '', component: MovieContainerComponent},
+  { path: '', component: MovieContainerComponent },
   { path: 'movie/:movieKey', component: MovieDetailComponent }
 
 ];
@@ -25,7 +25,8 @@ const appRoutes: Routes = [
     MovieItemComponent,
     MovieContainerComponent,
     MovieDetailComponent,
-    RatingItemComponent
+    RatingItemComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -38,9 +39,9 @@ const appRoutes: Routes = [
   bootstrap: [AppComponent]
 })
 export class AppModule {
-	constructor(ngRedux: NgRedux<any>) {
+  constructor(ngRedux: NgRedux<any>) {
 
-		ngRedux.provideStore(store);
-	}
+    ngRedux.provideStore(store);
+  }
 
- }
+}

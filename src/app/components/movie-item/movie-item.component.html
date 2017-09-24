@@ -3,17 +3,18 @@
   <label class="movielabel">{{movie.get('name')}}</label>
 
   <div class="rating">
-  <app-rating [(ngModel)]="rating" 
+  <app-rating [rating]="rating"
   [max]="10"
-  iconClass="fa-star"
+  iconClass="star-icon"
   fullIcon="★"
   emptyIcon="☆"
   [readonly]="true"
   [disabled]="false"
   [required]="false"
   [float]="true"
-  [titles]="['one', 'two', 'three', 'four', 'five']">
+  [titles]="['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten']">
 
 </app-rating>
+
 </div>
 </div>
