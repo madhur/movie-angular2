@@ -217,7 +217,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var appRoutes = [
     { path: '', component: __WEBPACK_IMPORTED_MODULE_11__components_movie_container_movie_container_component__["a" /* MovieContainerComponent */] },
-    { path: 'movie/:movieKey', component: __WEBPACK_IMPORTED_MODULE_1__components_movie_detail_movie_detail_component__["a" /* MovieDetailComponent */] }
+    { path: 'movie-angular2', component: __WEBPACK_IMPORTED_MODULE_11__components_movie_container_movie_container_component__["a" /* MovieContainerComponent */] },
+    { path: 'movie/:movieKey', component: __WEBPACK_IMPORTED_MODULE_1__components_movie_detail_movie_detail_component__["a" /* MovieDetailComponent */] },
+    { path: 'movie-angular2/movie/:movieKey', component: __WEBPACK_IMPORTED_MODULE_1__components_movie_detail_movie_detail_component__["a" /* MovieDetailComponent */] }
 ];
 var AppModule = (function () {
     function AppModule(ngRedux) {
