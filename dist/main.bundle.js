@@ -4,10 +4,27 @@ webpackJsonp([1,4],{
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_Rx__ = __webpack_require__(85);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_rxjs_Rx__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_movie_mock_data__ = __webpack_require__(183);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MoviesConstants; });
+var MoviesConstants = {
+    GET_MOVIES_LIST: 'GET_MOVIES_LIST',
+    GET_MOVIE: 'GET_MOVIE',
+    FILTER_MOVIES: 'FILTER_MOVIES',
+    SET_GENRE: 'SET_GENRE',
+    SET_SEARCH_TEXT: 'SET_SEARCH_TEXT'
+};
+//# sourceMappingURL=movies.constants.js.map
+
+/***/ }),
+
+/***/ 101:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__model_movie_model__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Rx__ = __webpack_require__(86);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_Rx__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__model_movie_mock_data__ = __webpack_require__(185);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MovieService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -18,35 +35,53 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
 var MovieService = (function () {
     function MovieService() {
     }
     MovieService.prototype.getMovieDetail = function (movieKey) {
-        var movie = __WEBPACK_IMPORTED_MODULE_2__model_movie_mock_data__["a" /* movies */].find(function (x) { return movieKey === x.key; });
+        var movie = __WEBPACK_IMPORTED_MODULE_3__model_movie_mock_data__["a" /* movies */].find(function (x) { return movieKey === x.key; });
         if (movie === -1) {
             return null;
         }
         else {
-            return __WEBPACK_IMPORTED_MODULE_0_rxjs_Rx__["Observable"].of(movie);
+            return __WEBPACK_IMPORTED_MODULE_1_rxjs_Rx__["Observable"].of(movie);
         }
     };
     ;
     MovieService.prototype.getMoviesList = function () {
-        return __WEBPACK_IMPORTED_MODULE_0_rxjs_Rx__["Observable"].of(__WEBPACK_IMPORTED_MODULE_2__model_movie_mock_data__["a" /* movies */]);
+        return __WEBPACK_IMPORTED_MODULE_1_rxjs_Rx__["Observable"].of(__WEBPACK_IMPORTED_MODULE_3__model_movie_mock_data__["a" /* movies */]);
     };
-    MovieService.prototype.searchMovie = function (searchText) {
-        var filteredMovies = __WEBPACK_IMPORTED_MODULE_2__model_movie_mock_data__["a" /* movies */].filter(function (movie) {
-            if (movie.name.toLowerCase().includes(searchText.toLowerCase())) {
-                return true;
+    MovieService.prototype.filterAndSearchMovies = function (genre, searchText) {
+        var that = this;
+        var filteredMovies = __WEBPACK_IMPORTED_MODULE_3__model_movie_mock_data__["a" /* movies */].filter(function (movie) {
+            if (searchText && searchText.trim().length > 0) {
+                if (movie.name.toLowerCase().includes(searchText.toLowerCase())) {
+                    return that.filterGenre(genre, movie);
+                }
+                else {
+                    return false;
+                }
             }
-            return false;
+            else {
+                return that.filterGenre(genre, movie);
+            }
         });
-        return __WEBPACK_IMPORTED_MODULE_0_rxjs_Rx__["Observable"].of(filteredMovies);
+        return __WEBPACK_IMPORTED_MODULE_1_rxjs_Rx__["Observable"].of(filteredMovies);
+    };
+    MovieService.prototype.filterGenre = function (genre, movie) {
+        if (genre === __WEBPACK_IMPORTED_MODULE_0__model_movie_model__["a" /* genreType */].allgenres) {
+            return true;
+        }
+        else if (movie.genres.includes(genre)) {
+            return true;
+        }
+        return false;
     };
     return MovieService;
 }());
 MovieService = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"])()
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["Injectable"])()
 ], MovieService);
 
 ;
@@ -54,7 +89,7 @@ MovieService = __decorate([
 
 /***/ }),
 
-/***/ 159:
+/***/ 160:
 /***/ (function(module, exports) {
 
 function webpackEmptyContext(req) {
@@ -63,20 +98,20 @@ function webpackEmptyContext(req) {
 webpackEmptyContext.keys = function() { return []; };
 webpackEmptyContext.resolve = webpackEmptyContext;
 module.exports = webpackEmptyContext;
-webpackEmptyContext.id = 159;
+webpackEmptyContext.id = 160;
 
 
 /***/ }),
 
-/***/ 160:
+/***/ 161:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__ = __webpack_require__(173);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_app_module__ = __webpack_require__(175);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__environments_environment__ = __webpack_require__(186);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__ = __webpack_require__(174);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_app_module__ = __webpack_require__(176);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__environments_environment__ = __webpack_require__(187);
 
 
 
@@ -89,11 +124,12 @@ __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dyna
 
 /***/ }),
 
-/***/ 174:
+/***/ 175:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_router__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(5);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -101,44 +137,58 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
 
 var AppComponent = (function () {
-    function AppComponent() {
+    function AppComponent(router) {
+        var _this = this;
+        this.router = router;
+        this.location = this.router.url;
+        this.router.events.subscribe((function (event) {
+            _this.location = window.location.pathname;
+            console.log(_this.location.pathname);
+        }));
     }
     return AppComponent;
 }());
 AppComponent = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Component"])({
         selector: 'app-root',
-        template: __webpack_require__(254),
-        styles: [__webpack_require__(240)]
-    })
+        template: __webpack_require__(256),
+        styles: [__webpack_require__(241)]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_router__["b" /* Router */]) === "function" && _a || Object])
 ], AppComponent);
 
+var _a;
 //# sourceMappingURL=app.component.js.map
 
 /***/ }),
 
-/***/ 175:
+/***/ 176:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_rating_item_rating_item_component__ = __webpack_require__(180);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_movie_detail_movie_detail_component__ = __webpack_require__(177);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__actions_movie_actions__ = __webpack_require__(47);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__service_movie_service__ = __webpack_require__(100);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_rating_item_rating_item_component__ = __webpack_require__(182);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_movie_detail_movie_detail_component__ = __webpack_require__(178);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__actions_movie_actions__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__service_movie_service__ = __webpack_require__(101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_core__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_forms__ = __webpack_require__(98);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_http__ = __webpack_require__(172);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_redux_store__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_forms__ = __webpack_require__(99);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_http__ = __webpack_require__(173);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_redux_store__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_redux_store___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__angular_redux_store__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__app_component__ = __webpack_require__(174);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_movie_item_movie_item_component__ = __webpack_require__(178);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_movie_container_movie_container_component__ = __webpack_require__(176);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__core_build_redux_store_service__ = __webpack_require__(181);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__angular_router__ = __webpack_require__(68);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__components_movie_search_movie_search_component__ = __webpack_require__(179);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__app_component__ = __webpack_require__(175);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_movie_item_movie_item_component__ = __webpack_require__(180);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_movie_container_movie_container_component__ = __webpack_require__(177);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__core_build_redux_store_service__ = __webpack_require__(183);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__angular_router__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__components_movie_search_movie_search_component__ = __webpack_require__(181);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__components_movie_genre_filter_movie_genre_filter_component__ = __webpack_require__(179);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -149,6 +199,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -183,6 +234,7 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_1__components_movie_detail_movie_detail_component__["a" /* MovieDetailComponent */],
             __WEBPACK_IMPORTED_MODULE_0__components_rating_item_rating_item_component__["a" /* RatingItemComponent */],
             __WEBPACK_IMPORTED_MODULE_14__components_movie_search_movie_search_component__["a" /* MovieSearchComponent */],
+            __WEBPACK_IMPORTED_MODULE_15__components_movie_genre_filter_movie_genre_filter_component__["a" /* MovieGenreFilterComponent */],
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser__["a" /* BrowserModule */],
@@ -202,15 +254,15 @@ var _a;
 
 /***/ }),
 
-/***/ 176:
+/***/ 177:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_Rx__ = __webpack_require__(85);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_Rx__ = __webpack_require__(86);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_rxjs_Rx__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__actions_movie_actions__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__actions_movie_actions__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_redux_store__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_redux_store__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_redux_store___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__angular_redux_store__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MovieContainerComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -249,8 +301,8 @@ __decorate([
 MovieContainerComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["Component"])({
         selector: 'app-movie-container',
-        template: __webpack_require__(255),
-        styles: [__webpack_require__(241)]
+        template: __webpack_require__(257),
+        styles: [__webpack_require__(242)]
     }),
     __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__actions_movie_actions__["a" /* MovieActions */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__actions_movie_actions__["a" /* MovieActions */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__angular_redux_store__["NgRedux"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_redux_store__["NgRedux"]) === "function" && _c || Object])
 ], MovieContainerComponent);
@@ -260,16 +312,16 @@ var _a, _b, _c;
 
 /***/ }),
 
-/***/ 177:
+/***/ 178:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__actions_movie_actions__ = __webpack_require__(47);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__actions_movie_actions__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(48);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_redux_store__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_redux_store__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_redux_store___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__angular_redux_store__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs__ = __webpack_require__(85);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs__ = __webpack_require__(86);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MovieDetailComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -308,8 +360,8 @@ __decorate([
 MovieDetailComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["Component"])({
         selector: 'app-movie-detail',
-        template: __webpack_require__(256),
-        styles: [__webpack_require__(242)]
+        template: __webpack_require__(258),
+        styles: [__webpack_require__(243)]
     }),
     __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* ActivatedRoute */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_0__actions_movie_actions__["a" /* MovieActions */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__actions_movie_actions__["a" /* MovieActions */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__angular_redux_store__["NgRedux"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_redux_store__["NgRedux"]) === "function" && _d || Object])
 ], MovieDetailComponent);
@@ -319,11 +371,62 @@ var _a, _b, _c, _d;
 
 /***/ }),
 
-/***/ 178:
+/***/ 179:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_router__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__actions_movie_actions__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_movie_model__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_redux_store__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_redux_store___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__angular_redux_store__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MovieGenreFilterComponent; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var MovieGenreFilterComponent = (function () {
+    function MovieGenreFilterComponent(redux, movieActions) {
+        this.redux = redux;
+        this.movieActions = movieActions;
+    }
+    MovieGenreFilterComponent.prototype.ngOnInit = function () {
+        this.genreType = Object.keys(__WEBPACK_IMPORTED_MODULE_2__model_movie_model__["a" /* genreType */]);
+        this.selectedGenre = __WEBPACK_IMPORTED_MODULE_2__model_movie_model__["a" /* genreType */].allgenres;
+    };
+    MovieGenreFilterComponent.prototype.onChange = function (genreValue) {
+        this.redux.dispatch(this.movieActions.filterMoviesByGenre(genreValue));
+    };
+    return MovieGenreFilterComponent;
+}());
+MovieGenreFilterComponent = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Component"])({
+        selector: 'app-movie-genre-filter',
+        template: __webpack_require__(259),
+        styles: [__webpack_require__(244)]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__angular_redux_store__["NgRedux"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_redux_store__["NgRedux"]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__actions_movie_actions__["a" /* MovieActions */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__actions_movie_actions__["a" /* MovieActions */]) === "function" && _b || Object])
+], MovieGenreFilterComponent);
+
+var _a, _b;
+//# sourceMappingURL=movie-genre-filter.component.js.map
+
+/***/ }),
+
+/***/ 180:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_router__ = __webpack_require__(48);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(5);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MovieItemComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -359,8 +462,8 @@ __decorate([
 MovieItemComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Component"])({
         selector: 'app-movie-item',
-        template: __webpack_require__(257),
-        styles: [__webpack_require__(243)]
+        template: __webpack_require__(260),
+        styles: [__webpack_require__(245)]
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_router__["b" /* Router */]) === "function" && _a || Object])
 ], MovieItemComponent);
@@ -370,13 +473,13 @@ var _a;
 
 /***/ }),
 
-/***/ 179:
+/***/ 181:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__actions_movie_actions__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__actions_movie_actions__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_redux_store__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_redux_store__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_redux_store___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__angular_redux_store__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MovieSearchComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -399,15 +502,15 @@ var MovieSearchComponent = (function () {
     MovieSearchComponent.prototype.ngOnInit = function () {
     };
     MovieSearchComponent.prototype.searchChange = function ($event) {
-        this.redux.dispatch(this.movieActions.searchMovie(this.searchText));
+        this.redux.dispatch(this.movieActions.searchMovieByName(this.searchText));
     };
     return MovieSearchComponent;
 }());
 MovieSearchComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Component"])({
         selector: 'app-movie-search',
-        template: __webpack_require__(258),
-        styles: [__webpack_require__(244)]
+        template: __webpack_require__(261),
+        styles: [__webpack_require__(246)]
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__angular_redux_store__["NgRedux"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_redux_store__["NgRedux"]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__actions_movie_actions__["a" /* MovieActions */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__actions_movie_actions__["a" /* MovieActions */]) === "function" && _b || Object])
 ], MovieSearchComponent);
@@ -417,12 +520,12 @@ var _a, _b;
 
 /***/ }),
 
-/***/ 180:
+/***/ 182:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(98);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(99);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RatingItemComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -645,14 +748,14 @@ var RatingItemComponent_1;
 
 /***/ }),
 
-/***/ 181:
+/***/ 183:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_redux__ = __webpack_require__(84);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_redux_thunk__ = __webpack_require__(259);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_redux__ = __webpack_require__(85);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_redux_thunk__ = __webpack_require__(262);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_redux_thunk___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_redux_thunk__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__combine_reducers_service__ = __webpack_require__(182);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__combine_reducers_service__ = __webpack_require__(184);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return store; });
 
 
@@ -668,12 +771,12 @@ var store = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_redux__["createSto
 
 /***/ }),
 
-/***/ 182:
+/***/ 184:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__reducer_movie_reducer__ = __webpack_require__(185);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_redux__ = __webpack_require__(84);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__reducer_movie_reducer__ = __webpack_require__(186);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_redux__ = __webpack_require__(85);
 
 
 /* harmony default export */ __webpack_exports__["a"] = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_redux__["combineReducers"])({
@@ -683,11 +786,11 @@ var store = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_redux__["createSto
 
 /***/ }),
 
-/***/ 183:
+/***/ 185:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__movie_model__ = __webpack_require__(184);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__movie_model__ = __webpack_require__(49);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return movies; });
 
 var movies = [
@@ -936,62 +1039,47 @@ var movies = [
 
 /***/ }),
 
-/***/ 184:
+/***/ 186:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return genreType; });
-var genreType = {
-    action: "action",
-    adventure: "adventure",
-    biography: "biography",
-    comedy: "comedy",
-    crime: "crime",
-    drama: "drama",
-    history: "history",
-    mystery: "mystery",
-    scifi: "scifi",
-    sport: "sport",
-    thriller: "thriller"
-};
-//# sourceMappingURL=movie.model.js.map
-
-/***/ }),
-
-/***/ 185:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__movies_constants__ = __webpack_require__(99);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_immutable__ = __webpack_require__(245);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_immutable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_immutable__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__model_movie_model__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__movies_constants__ = __webpack_require__(100);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_immutable__ = __webpack_require__(247);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_immutable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_immutable__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MoviesReducer; });
 
 
-var initialState = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_immutable__["fromJS"])({
+
+var initialState = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_immutable__["fromJS"])({
     movies: [],
     selected_movie: null,
-    filtered_movies: [],
-    search_text: null
+    search_text: null,
+    selected_genre: __WEBPACK_IMPORTED_MODULE_0__model_movie_model__["a" /* genreType */].allgenres,
+    filtered_movies: []
 });
 var MoviesReducer = function (state, action) {
     if (state === void 0) { state = initialState; }
     switch (action.type) {
-        case __WEBPACK_IMPORTED_MODULE_0__movies_constants__["a" /* MoviesConstants */].GET_MOVIES_LIST:
-            return state.merge(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_immutable__["fromJS"])({
+        case __WEBPACK_IMPORTED_MODULE_1__movies_constants__["a" /* MoviesConstants */].GET_MOVIES_LIST:
+            return state.merge(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_immutable__["fromJS"])({
                 movies: action.payload,
                 filtered_movies: action.payload
             }));
-        case __WEBPACK_IMPORTED_MODULE_0__movies_constants__["a" /* MoviesConstants */].GET_MOVIE:
-            return state.merge(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_immutable__["fromJS"])({
+        case __WEBPACK_IMPORTED_MODULE_1__movies_constants__["a" /* MoviesConstants */].GET_MOVIE:
+            return state.merge(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_immutable__["fromJS"])({
                 selected_movie: action.payload
             }));
-        case __WEBPACK_IMPORTED_MODULE_0__movies_constants__["a" /* MoviesConstants */].SEARCH_MOVIE:
-            return state.merge(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_immutable__["fromJS"])({
+        case __WEBPACK_IMPORTED_MODULE_1__movies_constants__["a" /* MoviesConstants */].SET_SEARCH_TEXT:
+            return state.merge(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_immutable__["fromJS"])({
                 search_text: action.payload
             }));
-        case __WEBPACK_IMPORTED_MODULE_0__movies_constants__["a" /* MoviesConstants */].FILTER_MOVIES:
-            return state.merge(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_immutable__["fromJS"])({
+        case __WEBPACK_IMPORTED_MODULE_1__movies_constants__["a" /* MoviesConstants */].SET_GENRE:
+            return state.merge(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_immutable__["fromJS"])({
+                selected_genre: action.payload
+            }));
+        case __WEBPACK_IMPORTED_MODULE_1__movies_constants__["a" /* MoviesConstants */].FILTER_MOVIES:
+            return state.merge(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_immutable__["fromJS"])({
                 filtered_movies: action.payload
             }));
         default:
@@ -1002,7 +1090,7 @@ var MoviesReducer = function (state, action) {
 
 /***/ }),
 
-/***/ 186:
+/***/ 187:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1019,28 +1107,10 @@ var environment = {
 
 /***/ }),
 
-/***/ 240:
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(27)();
-// imports
-
-
-// module
-exports.push([module.i, "", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
-
-/***/ }),
-
 /***/ 241:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(27)();
+exports = module.exports = __webpack_require__(23)();
 // imports
 
 
@@ -1058,43 +1128,7 @@ module.exports = module.exports.toString();
 /***/ 242:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(27)();
-// imports
-
-
-// module
-exports.push([module.i, ".desclabel {\n    font-weight: bold;\n}\n\n.movie-detail{\n    margin-top: 50px;\n}\n\n.movie-genre {\n    margin-top: 50px;\n}\n\n.col-lg-12 {\n    margin-top: 50px;\n}", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
-
-/***/ }),
-
-/***/ 243:
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(27)();
-// imports
-
-
-// module
-exports.push([module.i, ".movie {\n\n    margin: 50px;\n    cursor: pointer;\n}\n\n.movielabel {\n    text-align: center;\n    width: 100%;\n    margin-top: 10px;\n}\n\n.rating {\n    width: 100%;\n}", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
-
-/***/ }),
-
-/***/ 244:
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(27)();
+exports = module.exports = __webpack_require__(23)();
 // imports
 
 
@@ -1109,48 +1143,127 @@ module.exports = module.exports.toString();
 
 /***/ }),
 
-/***/ 254:
-/***/ (function(module, exports) {
+/***/ 243:
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = "<nav class=\"navbar navbar-inverse\">\n    <div class=\"container\">\n        <div class=\"navbar-header\">\n            <a class=\"navbar-brand\" href=\"#\">Movies App</a>\n        </div>\n        <form class=\"navbar-form navbar-right\">\n            <div class=\"form-group\">\n                <app-movie-search></app-movie-search>\n            </div>\n\n        </form>\n\n    </div>\n</nav>\n<div class=\"container\">\n    <router-outlet></router-outlet>\n</div>"
+exports = module.exports = __webpack_require__(23)();
+// imports
+
+
+// module
+exports.push([module.i, ".desclabel {\n    font-weight: bold;\n}\n\n.movie-detail{\n    margin-top: 50px;\n}\n\n.movie-genre {\n    margin-top: 50px;\n}\n\n.col-lg-12 {\n    margin-top: 50px;\n}\n\n.movie-detail {\n    padding-bottom: 50px;\n}", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
 
 /***/ }),
 
-/***/ 255:
-/***/ (function(module, exports) {
+/***/ 244:
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = "\n  <div class=\"row\">\n    <div class=\"col-lg-3 col-md-4 col-sm-6 col-xs-12\"  *ngFor=\"let movie of (moviesList$ | async)\">\n      <app-movie-item [movie]=\"movie\"></app-movie-item>\n    </div>\n  </div>\n\n"
+exports = module.exports = __webpack_require__(23)();
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ 245:
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(23)();
+// imports
+
+
+// module
+exports.push([module.i, ".movie {\n\n    margin: 50px;\n    cursor: pointer;\n}\n\n.movielabel {\n    text-align: center;\n    width: 100%;\n    margin-top: 10px;\n}\n\n.rating {\n    width: 100%;\n}", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ 246:
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(23)();
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
 
 /***/ }),
 
 /***/ 256:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\" class=\"movie-name\">\n    <div class=\"col-lg-12 col-md-4 col-sm-6 col-xs-12\">\n\n        <h1 class=\"movielabel\">{{(movie | async).get('name')}}</h1>\n\n\n\n    </div>\n\n</div>\n\n<div class=\"row\" class=\"movie-image\">\n    <div class=\"col-lg-12 col-md-4 col-sm-6 col-xs-12\">\n\n\n        <img [src]=\"getMovieImage(movie | async)\" />\n\n\n    </div>\n\n\n</div>\n\n<div class=\"row\" class=\"movie-rating\">\n    <div class=\"col-lg-12 col-md-4 col-sm-6 col-xs-12\">\n\n\n        <div class=\"rating\">\n            <app-rating [rating]=\"(movie | async).get('rate')\" [max]=\"10\" iconClass=\"star-icon\" fullIcon=\"★\" emptyIcon=\"☆\" [readonly]=\"true\"\n                [disabled]=\"false\" [required]=\"false\" [float]=\"true\" [titles]=\"['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten']\">\n\n            </app-rating>\n        </div>\n\n\n    </div>\n\n\n</div>\n\n<div class=\"row\" class=\"movie-genre\">\n    <div class=\"col-lg-12 col-md-4 col-sm-6 col-xs-12\">\n\n\n\n        <div class=\"desclabel\">Movie genre:</div>\n        <div class=\"description\">\n            {{(movie | async).get('genres').join(',')}}\n        </div>\n\n\n\n\n    </div>\n\n\n</div>\n\n<div class=\"row\" class=\"movie-length\">\n    <div class=\"col-lg-12 col-md-4 col-sm-6 col-xs-12\">\n\n\n\n        <div class=\"desclabel\">Movie length:</div>\n        <div class=\"description\">\n            {{(movie | async).get('length')}}\n        </div>\n\n\n\n\n    </div>\n\n\n</div>\n\n\n<div class=\"row\" class=\"movie-detail\">\n    <div class=\"col-lg-12 col-md-4 col-sm-6 col-xs-12\">\n        <div class=\"desclabel\">Description:</div>\n        <div class=\"description\">\n            {{(movie | async).get('description')}}\n        </div>\n\n    </div>\n</div>"
+module.exports = "<nav class=\"navbar navbar-inverse\">\n    <div class=\"container\">\n        <div class=\"navbar-header\">\n            <a class=\"navbar-brand\" href=\"#\">Movies App</a>\n        </div>\n        <form class=\"navbar-form navbar-right\">\n            <div class=\"form-group\">\n                    <app-movie-genre-filter *ngIf=\"location=='/'\"></app-movie-genre-filter>\n            </div>\n            <div class=\"form-group\">\n                <app-movie-search *ngIf=\"location=='/'\"></app-movie-search>\n            </div>\n\n        </form>\n\n    </div>\n</nav>\n<div class=\"container\">\n    <router-outlet></router-outlet>\n</div>"
 
 /***/ }),
 
 /***/ 257:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"movie\" (click)=\"openMovieDetail(movie)\">\n  <img [src]=\"getMovieImage(movie)\" />\n  <label class=\"movielabel\">{{movie.get('name')}}</label>\n\n  <div class=\"rating\">\n  <app-rating [rating]=\"rating\"\n  [max]=\"10\"\n  iconClass=\"star-icon\"\n  fullIcon=\"★\"\n  emptyIcon=\"☆\"\n  [readonly]=\"true\"\n  [disabled]=\"false\"\n  [required]=\"false\"\n  [float]=\"true\"\n  [titles]=\"['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten']\">\n\n</app-rating>\n\n</div>\n</div>"
+module.exports = "\n  <div class=\"row\">\n    <div class=\"col-lg-3 col-md-4 col-sm-6 col-xs-12\"  *ngFor=\"let movie of (moviesList$ | async)\">\n      <app-movie-item [movie]=\"movie\"></app-movie-item>\n    </div>\n  </div>\n\n"
 
 /***/ }),
 
 /***/ 258:
 /***/ (function(module, exports) {
 
+module.exports = "<div class=\"row\" class=\"movie-name\">\n    <div class=\"col-lg-11 col-md-4 col-sm-6 col-xs-12\">\n\n        <h1 class=\"movielabel\">{{(movie | async).get('name')}}</h1>\n\n\n\n    </div>\n\n</div>\n\n<div class=\"row\" class=\"movie-image\">\n    <div class=\"col-lg-12 col-md-4 col-sm-6 col-xs-12\">\n\n\n        <img [src]=\"getMovieImage(movie | async)\" />\n\n\n    </div>\n\n\n</div>\n\n<div class=\"row\" class=\"movie-rating\">\n    <div class=\"col-lg-12 col-md-4 col-sm-6 col-xs-12\">\n\n\n        <div class=\"rating\">\n            <app-rating [rating]=\"(movie | async).get('rate')\" [max]=\"10\" iconClass=\"star-icon\" fullIcon=\"★\" emptyIcon=\"☆\" [readonly]=\"true\"\n                [disabled]=\"false\" [required]=\"false\" [float]=\"true\" [titles]=\"['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten']\">\n\n            </app-rating>\n        </div>\n\n\n    </div>\n\n\n</div>\n\n<div class=\"row\" class=\"movie-genre\">\n    <div class=\"col-lg-12 col-md-4 col-sm-6 col-xs-12\">\n\n\n\n        <div class=\"desclabel\">Movie genre:</div>\n        <div class=\"description\">\n            {{(movie | async).get('genres').join(',')}}\n        </div>\n\n\n\n\n    </div>\n\n\n</div>\n\n<div class=\"row\" class=\"movie-length\">\n    <div class=\"col-lg-12 col-md-4 col-sm-6 col-xs-12\">\n\n\n\n        <div class=\"desclabel\">Movie length:</div>\n        <div class=\"description\">\n            {{(movie | async).get('length')}}\n        </div>\n\n\n\n\n    </div>\n\n\n</div>\n\n\n<div class=\"row\" class=\"movie-detail\">\n    <div class=\"col-lg-12 col-md-4 col-sm-6 col-xs-12\">\n        <div class=\"desclabel\">Description:</div>\n        <div class=\"description\">\n            {{(movie | async).get('description')}}\n        </div>\n\n    </div>\n</div>"
+
+/***/ }),
+
+/***/ 259:
+/***/ (function(module, exports) {
+
+module.exports = "<select [(ngModel)]=\"selectedGenre\" name=\"genre\" (change)=\"onChange($event.target.value)\">\n    <option *ngFor=\"let genre of genreType\" [value]=\"genre\" selected=\"selectedGenre==genre\">{{genre}}</option>\n </select>`"
+
+/***/ }),
+
+/***/ 260:
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"movie\" (click)=\"openMovieDetail(movie)\">\n  <img [src]=\"getMovieImage(movie)\" />\n  <label class=\"movielabel\">{{movie.get('name')}}</label>\n\n  <div class=\"rating\">\n  <app-rating [rating]=\"rating\"\n  [max]=\"10\"\n  iconClass=\"star-icon\"\n  fullIcon=\"★\"\n  emptyIcon=\"☆\"\n  [readonly]=\"true\"\n  [disabled]=\"false\"\n  [required]=\"false\"\n  [float]=\"true\"\n  [titles]=\"['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten']\">\n\n</app-rating>\n\n</div>\n</div>"
+
+/***/ }),
+
+/***/ 261:
+/***/ (function(module, exports) {
+
 module.exports = "<input name=\"searchText\" type=\"text\" [(ngModel)]=\"searchText\" (input)=\"searchChange($event)\"  class=\"form-control\" placeholder=\"Movie Name\">"
 
 /***/ }),
 
-/***/ 47:
+/***/ 33:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__service_movie_service__ = __webpack_require__(100);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__service_movie_service__ = __webpack_require__(101);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__movies_constants__ = __webpack_require__(99);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__movies_constants__ = __webpack_require__(100);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MovieActions; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1175,7 +1288,13 @@ var MovieActions = (function () {
         };
         this.setSearchText = function (data) {
             return {
-                type: __WEBPACK_IMPORTED_MODULE_2__movies_constants__["a" /* MoviesConstants */].SEARCH_MOVIE,
+                type: __WEBPACK_IMPORTED_MODULE_2__movies_constants__["a" /* MoviesConstants */].SET_SEARCH_TEXT,
+                payload: data
+            };
+        };
+        this.setSelectedGenre = function (data) {
+            return {
+                type: __WEBPACK_IMPORTED_MODULE_2__movies_constants__["a" /* MoviesConstants */].SET_GENRE,
                 payload: data
             };
         };
@@ -1203,15 +1322,32 @@ var MovieActions = (function () {
             });
         };
     };
-    MovieActions.prototype.searchMovie = function (searchText) {
+    MovieActions.prototype.searchMovieByName = function (searchText) {
         var _this = this;
         return function (dispatch) {
-            _this.moviesService.searchMovie(searchText)
+            dispatch(_this.setSearchText(searchText));
+            dispatch(_this.searchAndFilterMovies());
+        };
+    };
+    MovieActions.prototype.searchAndFilterMovies = function () {
+        var _this = this;
+        return function (dispatch, getState) {
+            var movies_app = getState().movies_app;
+            var genre = movies_app.getIn(['selected_genre']);
+            var searchText = movies_app.getIn(['search_text']);
+            _this.moviesService.filterAndSearchMovies(genre, searchText)
                 .subscribe(function (res) {
                 dispatch(_this.filterMovies(res));
             }, function (err) {
                 console.log(err);
             });
+        };
+    };
+    MovieActions.prototype.filterMoviesByGenre = function (genre) {
+        var _this = this;
+        return function (dispatch) {
+            dispatch(_this.setSelectedGenre(genre));
+            dispatch(_this.searchAndFilterMovies());
         };
     };
     MovieActions.prototype.getMovieByKey = function (movieKey) {
@@ -1237,28 +1373,36 @@ var _a;
 
 /***/ }),
 
-/***/ 532:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(160);
-
-
-/***/ }),
-
-/***/ 99:
+/***/ 49:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MoviesConstants; });
-var MoviesConstants = {
-    GET_MOVIES_LIST: 'GET_MOVIES_LIST',
-    GET_MOVIE: 'GET_MOVIE',
-    SEARCH_MOVIE: 'SEARCH_MOVIE',
-    FILTER_MOVIES: 'FILTER_MOVIES'
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return genreType; });
+var genreType = {
+    allgenres: "allgenres",
+    action: "action",
+    adventure: "adventure",
+    biography: "biography",
+    comedy: "comedy",
+    crime: "crime",
+    drama: "drama",
+    history: "history",
+    mystery: "mystery",
+    scifi: "scifi",
+    sport: "sport",
+    thriller: "thriller"
 };
-//# sourceMappingURL=movies.constants.js.map
+//# sourceMappingURL=movie.model.js.map
+
+/***/ }),
+
+/***/ 535:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(161);
+
 
 /***/ })
 
-},[532]);
+},[535]);
 //# sourceMappingURL=main.bundle.js.map

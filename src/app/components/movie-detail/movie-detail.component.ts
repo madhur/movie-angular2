@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
 export class MovieDetailComponent implements OnInit {
 
   @select(['movies_app', 'selected_movie'])
-  private movie: Observable<any>;
+  movie: Observable<any>;
 
   constructor(
     private route: ActivatedRoute, 
