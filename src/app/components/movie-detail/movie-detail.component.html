@@ -26,18 +26,10 @@
 
 
         <div class="rating">
-                <app-rating [rating]="(movie | async).get('rate')"
-                [max]="10"
-                iconClass="star-icon"
-                fullIcon="★"
-                emptyIcon="☆"
-                [readonly]="true"
-                [disabled]="false"
-                [required]="false"
-                [float]="true"
-                [titles]="['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten']">
-              
-              </app-rating>
+            <app-rating [rating]="(movie | async).get('rate')" [max]="10" iconClass="star-icon" fullIcon="★" emptyIcon="☆" [readonly]="true"
+                [disabled]="false" [required]="false" [float]="true" [titles]="['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten']">
+
+            </app-rating>
         </div>
 
 
