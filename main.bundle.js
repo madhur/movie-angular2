@@ -351,7 +351,7 @@ var MovieDetailComponent = (function () {
         this.redux.dispatch(this.movieActions.getMovieByKey(movieKey));
     };
     MovieDetailComponent.prototype.getMovieImage = function (movie) {
-        return '/movie-angular2/assets/images/movie-covers/' + movie.get('img');
+        return '/assets/images/movie-covers/' + movie.get('img');
     };
     return MovieDetailComponent;
 }());
@@ -450,7 +450,7 @@ var MovieItemComponent = (function () {
         this.rating = this.movie.get('rate');
     };
     MovieItemComponent.prototype.getMovieImage = function (movie) {
-        return '/movie-angular2/assets/images/movie-covers/' + movie.get('img');
+        return '/assets/images/movie-covers/' + movie.get('img');
     };
     MovieItemComponent.prototype.openMovieDetail = function (movie) {
         this.router.navigate(['movie', movie.get('key')]);
@@ -1220,7 +1220,7 @@ module.exports = module.exports.toString();
 /***/ 256:
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-inverse\">\n    <div class=\"container\">\n        <div class=\"navbar-header\">\n            <a class=\"navbar-brand\" href=\"#\">Movies App</a>\n        </div>\n        <form class=\"navbar-form navbar-right\">\n            <div class=\"form-group\">\n                    <app-movie-genre-filter *ngIf=\"location=='/'\"></app-movie-genre-filter>\n            </div>\n            <div class=\"form-group\">\n                <app-movie-search *ngIf=\"location=='/'\"></app-movie-search>\n            </div>\n\n        </form>\n\n    </div>\n</nav>\n<div class=\"container\">\n    <router-outlet></router-outlet>\n</div>"
+module.exports = "<nav class=\"navbar navbar-inverse\">\n    <div class=\"container\">\n        <div class=\"navbar-header\">\n            <a class=\"navbar-brand\" href=\"#\">Movies App</a>\n        </div>\n        <form class=\"navbar-form navbar-right\">\n            <div class=\"form-group\">\n                    <app-movie-genre-filter *ngIf=\"location=='/' || location=='/movie-angular2/'  || location=='/movie-angular2'\"></app-movie-genre-filter>\n            </div>\n            <div class=\"form-group\">\n                <app-movie-search *ngIf=\"location=='/' || location=='/movie-angular2/'  || location=='/movie-angular2'\"></app-movie-search>\n            </div>\n\n        </form>\n\n    </div>\n</nav>\n<div class=\"container\">\n    <router-outlet></router-outlet>\n</div>"
 
 /***/ }),
 
