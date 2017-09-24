@@ -11,16 +11,14 @@ export class MovieSearchComponent implements OnInit {
 
   searchText;
 
-    
-
   constructor(private redux: NgRedux<any>, private movieActions: MovieActions) { }
 
   ngOnInit() {
   }
 
   searchChange($event) {
-    
-    this.redux.dispatch(<any>this.movieActions.searchMovie(this.searchText));
+
+    this.redux.dispatch(<any>this.movieActions.searchMovieByName(this.searchText));
   }
 
 }

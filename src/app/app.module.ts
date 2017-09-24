@@ -13,6 +13,7 @@ import { MovieContainerComponent } from './components/movie-container/movie-cont
 import { store } from './core/build-redux-store.service';
 import { Routes, RouterModule } from '@angular/router';
 import { MovieSearchComponent } from './components/movie-search/movie-search.component';
+import { MovieGenreFilterComponent } from './components/movie-genre-filter/movie-genre-filter.component';
 
 const appRoutes: Routes = [
   { path: '', component: MovieContainerComponent },
@@ -28,6 +29,7 @@ const appRoutes: Routes = [
     MovieDetailComponent,
     RatingItemComponent,
     MovieSearchComponent,
+    MovieGenreFilterComponent,
 
   ],
   imports: [

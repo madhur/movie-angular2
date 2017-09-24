@@ -6,8 +6,9 @@ import { fromJS } from 'immutable';
 const initialState = fromJS({
     movies: [],
     selected_movie: null,
-    filtered_movies: [],
-    search_text: null
+    search_text: null,
+    selected_genre: "allgenres",
+    filtered_movies: []
 });
 
 export const MoviesReducer: IReducer<any> = (state: any = initialState, action: IAction) => {
@@ -24,9 +25,15 @@ export const MoviesReducer: IReducer<any> = (state: any = initialState, action: 
                 selected_movie: action.payload
             }));
 
-        case MoviesConstants.SEARCH_MOVIE:
+
+        case MoviesConstants.SET_SEARCH_TEXT:
             return state.merge(fromJS({
                 search_text: action.payload
+            }));
+
+        case MoviesConstants.SET_GENRE:
+            return state.merge(fromJS({
+                selected_genre: action.payload
             }));
 
         case MoviesConstants.FILTER_MOVIES:

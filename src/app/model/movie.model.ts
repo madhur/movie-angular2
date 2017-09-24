@@ -2,6 +2,7 @@ export type GenreType = "action" | "adventure" | "biography" | "comedy" | "crime
 	| "drama" | "history" | "mystery" | "scifi" | "sport" | "thriller";
 
 export const genreType = {
+	allGenres: "allgenres" as GenreType,
 	action: "action" as GenreType,
 	adventure: "adventure" as GenreType,
 	biography: "biography" as GenreType,

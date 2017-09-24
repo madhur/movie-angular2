@@ -11,7 +11,7 @@ export class MovieActions {
     }
 
 
-    getMoviesList: IActionCreator = (data: any) => {
+     private getMoviesList: IActionCreator = (data: any) => {
 
         return {
             type: MoviesConstants.GET_MOVIES_LIST,
@@ -19,15 +19,23 @@ export class MovieActions {
         };
     }
 
-    setSearchText: IActionCreator = (data: any) => {
+    private setSearchText: IActionCreator = (data: any) => {
 
         return {
-            type: MoviesConstants.SEARCH_MOVIE,
+            type: MoviesConstants.SET_SEARCH_TEXT,
             payload: data
         };
     }
 
-    filterMovies: IActionCreator = (data: any) => {
+    private setSelectedGenre: IActionCreator = (data: any) => {
+        
+                return {
+                    type: MoviesConstants.SET_GENRE,
+                    payload: data
+                };
+            }
+
+    private filterMovies: IActionCreator = (data: any) => {
         
                 return {
                     type: MoviesConstants.FILTER_MOVIES,
@@ -35,7 +43,7 @@ export class MovieActions {
                 };
             }
 
-    getMovie: IActionCreator = (data: any) => {
+    private getMovie: IActionCreator = (data: any) => {
 
         return {
             type: MoviesConstants.GET_MOVIE,
@@ -56,14 +64,32 @@ export class MovieActions {
         };
     }
 
-    searchMovie(searchText) {
+    searchMovieByName(searchText) {
         return (dispatch) => {
-            this.moviesService.searchMovie(searchText)
-                .subscribe(res => {
-                    dispatch(this.filterMovies(res));
-                }, err => {
-                    console.log(err);
-                });
+            dispatch(this.setSearchText(searchText));
+            dispatch(this.searchAndFilterMovies());
+        };
+    }
+
+    private searchAndFilterMovies() {
+        return (dispatch, getState) => {
+            let {movies_app} = getState();
+            let genre = movies_app.getIn(['selected_genre']);
+            let searchText = movies_app.getIn(['search_text']);
+
+            this.moviesService.filterAndSearchMovies(genre, searchText)
+            .subscribe(res => {
+                dispatch(this.filterMovies(res));
+            }, err => {
+                console.log(err);
+            });
+        };
+    }
+
+    filterMoviesByGenre(genre) {
+        return (dispatch) => {
+            dispatch(this.setSelectedGenre(genre));
+            dispatch(this.searchAndFilterMovies());
         };
     }
 
