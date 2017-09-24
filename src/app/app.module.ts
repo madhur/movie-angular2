@@ -17,8 +17,9 @@ import { MovieGenreFilterComponent } from './components/movie-genre-filter/movie
 
 const appRoutes: Routes = [
   { path: '', component: MovieContainerComponent },
-  { path: 'movie/:movieKey', component: MovieDetailComponent }
-
+  {path: 'movie-angular2', component: MovieContainerComponent },
+  { path: 'movie/:movieKey', component: MovieDetailComponent },
+  { path: 'movie-angular2/movie/:movieKey', component: MovieDetailComponent }
 ];
 
 @NgModule({
@@ -43,8 +44,6 @@ const appRoutes: Routes = [
   bootstrap: [AppComponent]
 })
 export class AppModule {
-
-  
 
   constructor(ngRedux: NgRedux<any>) {
 
