@@ -1,9 +1,0 @@
-export const MoviesConstants = {
-    GET_MOVIES_LIST: 'GET_MOVIES_LIST',
-    GET_MOVIE: 'GET_MOVIE',
-    FILTER_MOVIES: 'FILTER_MOVIES',
-    SET_GENRE: 'SET_GENRE',
-    SET_SEARCH_TEXT: 'SET_SEARCH_TEXT'
-};
-
-
