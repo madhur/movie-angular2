@@ -1,6 +1,5 @@
 import { Observable } from 'rxjs/Rx';
 import { MovieActions } from '../../actions/movie.actions';
-import { MovieService } from '../../service/movie.service';
 import { Component, OnInit } from '@angular/core';
 import { NgRedux, select } from '@angular-redux/store';
 
@@ -25,14 +24,8 @@ export class MovieContainerComponent implements OnInit {
     this.moviesList$.subscribe(data => {
       if(data != null) {
         this.numMovies = data.size;
-        console.log(this.numMovies);
       }
 
     });
-    
-
   }
-
-  
-
 }

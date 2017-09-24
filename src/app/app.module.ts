@@ -15,7 +15,7 @@ import {Routes, RouterModule} from '@angular/router';
 
 const appRoutes: Routes = [
   { path: '', component: MovieContainerComponent},
-  { path: 'movie/:movieId', component: MovieDetailComponent }
+  { path: 'movie/:movieKey', component: MovieDetailComponent }
 
 ];
 

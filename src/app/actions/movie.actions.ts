@@ -47,4 +47,15 @@ export class MovieActions {
                 });
         };
     }
+
+    getMovieByKey(movieKey) {
+        return (dispatch) => {
+            this.moviesService.getMovieDetail(movieKey)
+                .subscribe(res => {
+                    dispatch(this.getMovie(res));
+                }, err => {
+                    console.log(err);
+                });
+        };
+    }
 }

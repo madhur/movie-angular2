@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
@@ -10,7 +11,7 @@ export class MovieItemComponent implements OnInit {
   @Input() movie;
   rating;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
     this.rating = this.movie.get('rate');
@@ -21,8 +22,7 @@ export class MovieItemComponent implements OnInit {
   }
 
   openMovieDetail(movie) {
-    console.log('clicked movie');
-
+    this.router.navigate(['movie', movie.get('key')]);
   }
 
 }

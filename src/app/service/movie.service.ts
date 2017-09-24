@@ -5,8 +5,8 @@ import {movies} from '../model/movie.mock-data';
 @Injectable()
 export class MovieService {
 
-    getMovieDetail(id) {
-        let movie = movies.find( x => id === x );
+    getMovieDetail(movieKey) {
+        let movie = movies.find( x => movieKey === x.key );
         if ( movie === -1 ) {
             return null;
         } else {
