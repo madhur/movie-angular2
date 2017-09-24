@@ -12,7 +12,7 @@ export class MovieContainerComponent implements OnInit {
 
   private numMovies;
 
-  @select(['movies_app', 'movies'])
+  @select(['movies_app', 'filtered_movies'])
   private moviesList$: Observable<any>;
 
   constructor(private movieActions: MovieActions, private redux: NgRedux<any>) { }

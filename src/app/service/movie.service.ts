@@ -17,4 +17,17 @@ export class MovieService {
     getMoviesList() {
         return Observable.of(movies);
     }
+
+
+    searchMovie(searchText) {
+        let filteredMovies = movies.filter(function(movie) {
+            if (movie.name.toLowerCase().includes(searchText.toLowerCase())) {
+                return true;
+            }
+
+            return false;
+        });
+
+        return Observable.of(filteredMovies);
+    }
 };

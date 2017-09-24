@@ -15,7 +15,8 @@ export const MoviesReducer: IReducer<any> = (state: any = initialState, action: 
     switch (action.type) {
         case MoviesConstants.GET_MOVIES_LIST:
             return state.merge(fromJS({
-                movies: action.payload
+                movies: action.payload,
+                filtered_movies: action.payload
             }));
 
         case MoviesConstants.GET_MOVIE:
@@ -26,6 +27,11 @@ export const MoviesReducer: IReducer<any> = (state: any = initialState, action: 
         case MoviesConstants.SEARCH_MOVIE:
             return state.merge(fromJS({
                 search_text: action.payload
+            }));
+
+        case MoviesConstants.FILTER_MOVIES:
+            return state.merge(fromJS({
+                filtered_movies: action.payload
             }));
 
         default:

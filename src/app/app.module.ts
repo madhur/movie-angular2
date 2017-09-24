@@ -12,6 +12,7 @@ import { MovieItemComponent } from './components/movie-item/movie-item.component
 import { MovieContainerComponent } from './components/movie-container/movie-container.component';
 import { store } from './core/build-redux-store.service';
 import { Routes, RouterModule } from '@angular/router';
+import { MovieSearchComponent } from './components/movie-search/movie-search.component';
 
 const appRoutes: Routes = [
   { path: '', component: MovieContainerComponent },
@@ -26,6 +27,7 @@ const appRoutes: Routes = [
     MovieContainerComponent,
     MovieDetailComponent,
     RatingItemComponent,
+    MovieSearchComponent,
 
   ],
   imports: [
@@ -39,9 +41,14 @@ const appRoutes: Routes = [
   bootstrap: [AppComponent]
 })
 export class AppModule {
+
+  
+
   constructor(ngRedux: NgRedux<any>) {
 
     ngRedux.provideStore(store);
   }
+
+
 
 }

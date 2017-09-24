@@ -27,6 +27,14 @@ export class MovieActions {
         };
     }
 
+    filterMovies: IActionCreator = (data: any) => {
+        
+                return {
+                    type: MoviesConstants.FILTER_MOVIES,
+                    payload: data
+                };
+            }
+
     getMovie: IActionCreator = (data: any) => {
 
         return {
@@ -42,6 +50,17 @@ export class MovieActions {
             this.moviesService.getMoviesList()
                 .subscribe(res => {
                     dispatch(this.getMoviesList(res));
+                }, err => {
+                    console.log(err);
+                });
+        };
+    }
+
+    searchMovie(searchText) {
+        return (dispatch) => {
+            this.moviesService.searchMovie(searchText)
+                .subscribe(res => {
+                    dispatch(this.filterMovies(res));
                 }, err => {
                     console.log(err);
                 });
