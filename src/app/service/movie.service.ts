@@ -20,29 +20,30 @@ export class MovieService {
     }
 
     filterAndSearchMovies(genre, searchText) {
+        let that = this;
+
         let filteredMovies = movies.filter(function (movie) {
             if (searchText && searchText.trim().length > 0) {
                 if (movie.name.toLowerCase().includes(searchText.toLowerCase())) {
-                    if (genre === genreType.allGenres) {
-                        return true;
-                    } else if (movie.genres.includes(genre)) {
-                        return true;
-                    }
-
-                    return false;
+                    return that.filterGenre(genre, movie);
                 } else {
                     return false;
                 }
             } else {
-                if (genre === genreType.allGenres) {
-                    return true;
-                } else if (movie.genres.includes(genre)) {
-                    return true;
-                }
-                return false;
+                return that.filterGenre(genre, movie);
             }
         });
 
         return Observable.of(filteredMovies);
+    }
+
+    private filterGenre(genre, movie) {
+
+        if (genre === genreType.allgenres) {
+            return true;
+        } else if (movie.genres.includes(genre)) {
+            return true;
+        }
+        return false;
     }
 };

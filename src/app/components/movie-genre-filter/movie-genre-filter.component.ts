@@ -18,7 +18,7 @@ export class MovieGenreFilterComponent implements OnInit {
 
   ngOnInit() {
     this.genreType = Object.keys(genreType);
-    this.selectedGenre = genreType.allGenres;
+    this.selectedGenre = genreType.allgenres;
   }
 
   onChange(genreValue) {

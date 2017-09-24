@@ -1,3 +1,4 @@
+import { genreType } from '../model/movie.model';
 import { MoviesConstants } from '../movies.constants';
 import { IAction } from '../model/IAction';
 import { IReducer } from '../model/IReducer';
@@ -7,7 +8,7 @@ const initialState = fromJS({
     movies: [],
     selected_movie: null,
     search_text: null,
-    selected_genre: "allgenres",
+    selected_genre: genreType.allGenres,
     filtered_movies: []
 });
 

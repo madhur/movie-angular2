@@ -11,7 +11,7 @@ export class MovieActions {
     }
 
 
-     private getMoviesList: IActionCreator = (data: any) => {
+    private getMoviesList: IActionCreator = (data: any) => {
 
         return {
             type: MoviesConstants.GET_MOVIES_LIST,
@@ -28,20 +28,20 @@ export class MovieActions {
     }
 
     private setSelectedGenre: IActionCreator = (data: any) => {
-        
-                return {
-                    type: MoviesConstants.SET_GENRE,
-                    payload: data
-                };
-            }
+
+        return {
+            type: MoviesConstants.SET_GENRE,
+            payload: data
+        };
+    }
 
     private filterMovies: IActionCreator = (data: any) => {
-        
-                return {
-                    type: MoviesConstants.FILTER_MOVIES,
-                    payload: data
-                };
-            }
+
+        return {
+            type: MoviesConstants.FILTER_MOVIES,
+            payload: data
+        };
+    }
 
     private getMovie: IActionCreator = (data: any) => {
 
@@ -73,16 +73,16 @@ export class MovieActions {
 
     private searchAndFilterMovies() {
         return (dispatch, getState) => {
-            let {movies_app} = getState();
+            let { movies_app } = getState();
             let genre = movies_app.getIn(['selected_genre']);
             let searchText = movies_app.getIn(['search_text']);
 
             this.moviesService.filterAndSearchMovies(genre, searchText)
-            .subscribe(res => {
-                dispatch(this.filterMovies(res));
-            }, err => {
-                console.log(err);
-            });
+                .subscribe(res => {
+                    dispatch(this.filterMovies(res));
+                }, err => {
+                    console.log(err);
+                });
         };
     }
 
