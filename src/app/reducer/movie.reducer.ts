@@ -8,7 +8,7 @@ const initialState = fromJS({
     movies: [],
     selected_movie: null,
     search_text: null,
-    selected_genre: genreType.allGenres,
+    selected_genre: genreType.allgenres,
     filtered_movies: []
 });
 
