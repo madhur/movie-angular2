@@ -351,7 +351,7 @@ var MovieDetailComponent = (function () {
         this.redux.dispatch(this.movieActions.getMovieByKey(movieKey));
     };
     MovieDetailComponent.prototype.getMovieImage = function (movie) {
-        return '/assets/images/movie-covers/' + movie.get('img');
+        return '/movie-angular2/assets/images/movie-covers/' + movie.get('img');
     };
     return MovieDetailComponent;
 }());
@@ -450,7 +450,7 @@ var MovieItemComponent = (function () {
         this.rating = this.movie.get('rate');
     };
     MovieItemComponent.prototype.getMovieImage = function (movie) {
-        return '/assets/images/movie-covers/' + movie.get('img');
+        return '/movie-angular2/assets/images/movie-covers/' + movie.get('img');
     };
     MovieItemComponent.prototype.openMovieDetail = function (movie) {
         this.router.navigate(['movie', movie.get('key')]);
