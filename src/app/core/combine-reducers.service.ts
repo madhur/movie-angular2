@@ -4,6 +4,6 @@ import { combineReducers } from 'redux';
 
 export default combineReducers({
 
-    movies: MoviesReducer
+    movies_app: MoviesReducer
 
 });

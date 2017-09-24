@@ -1,3 +1,19 @@
-<p>
-  movie-item works!
-</p>
+<div class="movie" (click)="openMovieDetail(movie)">
+  <img [src]="getMovieImage(movie)" />
+  <label class="movielabel">{{movie.get('name')}}</label>
+
+  <div class="rating">
+  <app-rating [(ngModel)]="rating" 
+  [max]="10"
+  iconClass="fa-star"
+  fullIcon="★"
+  emptyIcon="☆"
+  [readonly]="true"
+  [disabled]="false"
+  [required]="false"
+  [float]="true"
+  [titles]="['one', 'two', 'three', 'four', 'five']">
+
+</app-rating>
+</div>
+</div>
